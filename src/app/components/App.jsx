@@ -1,24 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Searchbar from './Searchbar';
+import MovieGrid from './MovieGrid';
 import { ReactComponent as Logo } from '../../resources/logos/logo.svg';
 import '../styles/App.scss';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-
-  }
-
-  render() {
-    return (
-      <div className="app">
-        <Logo className="logo" />
-        <Searchbar />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="app">
+      <Logo className="logo" />
+      <Searchbar />
+      <MovieGrid />
+    </div>
+  );
 }
 
 export default App;
