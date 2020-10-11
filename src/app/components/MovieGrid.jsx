@@ -41,6 +41,7 @@ class MovieGrid extends Component {
         title={movie.Title}
         year={movie.Year}
         id={movie.imdbID}
+        key={movie.imdbID}
       />
     ));
 

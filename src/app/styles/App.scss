@@ -78,10 +78,50 @@
     margin-top: 30px;
 
     .movie-card-wrapper {
+      position: relative;
+      cursor: pointer;
+      $movie-card-padding: 12px;
+
       img{
         width: 100%;
         height: 100%;
+        border-radius: 4px;
         object-fit: cover;
+      }
+
+      .movie-card-overlay {
+        position: absolute;
+        top: 0;
+
+        height: calc(100% - #{$movie-card-padding*2});
+        width: calc(100% - #{$movie-card-padding*2});
+        padding: $movie-card-padding;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        background-color: $grey;
+        opacity: 90%;
+        border-radius: 3px;
+
+        .movie-title {
+          @include font-medium;
+          color: $white;
+        }
+
+        .movie-year {
+          @include font-small;
+          color: $white;
+        }
+      }
+
+      .heart {
+        position: absolute;
+        position: absolute;
+        top: $movie-card-padding;
+        right: $movie-card-padding;
+        z-index: 1;
       }
     }
   }

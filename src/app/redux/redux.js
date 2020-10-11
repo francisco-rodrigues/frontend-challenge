@@ -2,6 +2,7 @@ import { createStore } from 'redux';
 
 const initialState = {
   searchTerm: '',
+  favorites: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,8 +12,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         searchTerm: action.payload,
       };
-    case 'EXAMPLE2':
-      return { ...state };
+    case 'ADD_FAVORITE':
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      };
+    case 'REMOVE_FAVORITE':
+      return {
+        ...state,
+        favorites: state.favorites.filter((id) => id !== action.payload),
+      };
     default:
       return state;
   }
