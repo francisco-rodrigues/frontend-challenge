@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ReactComponent as Magnifier } from '../../resources/icons/icon-magnifier-grey.svg';
 import { updateSearchTerm } from '../redux/actions';
-import '../styles/App.scss';
+import '../styles/Searchbar.scss';
 
 function Searchbar(props) {
   let timeout = 0;

@@ -1,0 +1,47 @@
+@import './Typography.scss';
+@import './Colors.scss';
+
+.app .search {
+  background-color: white;
+  padding: 12px 0 12px 0;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+
+  .magnifier {
+    margin: 0 12px 0 12px;
+  }
+
+  .search-input-field {
+    @include font-small;
+    line-height: 16px;
+    outline: none;
+    border: none;
+    padding: 0;
+    width: 100%;
+    color: $grey-dark;
+
+    &::placeholder {
+      color: $grey-light;
+    }
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      -webkit-appearance:none;
+    }
+  }
+
+  &.disabled {
+    background-color: $grey;
+
+    .search-input-field {
+      background-color: $grey;
+
+      &::placeholder {
+        color: $grey-mid;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EmptyStateIllustration from '../../resources/illustrations/illustration-empty-state.png';
-import '../styles/App.scss';
+import '../styles/MovieGrid.scss';
 import MovieCard from './MovieCard';
 
 class MovieGrid extends Component {

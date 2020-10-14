@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import '../styles/MovieCard.scss';
 import { addFavorite, removeFavorite } from '../redux/actions';
 import { ReactComponent as HeartWhite } from '../../resources/icons/icon-heart-white.svg';
 import { ReactComponent as HeartFull } from '../../resources/icons/icon-heart-full.svg';
