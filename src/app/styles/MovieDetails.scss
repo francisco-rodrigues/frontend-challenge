@@ -1,0 +1,170 @@
+@import './Typography.scss';
+@import './Colors.scss';
+
+@mixin container-spacing {
+  margin-top: 25px;
+}
+
+@mixin container-spacing-extra {
+  margin-top: 45px;
+}
+
+.app {
+
+  .arrow-container {
+    display: block;
+  }
+
+  .content-container {
+    display: flex;
+    @include container-spacing;
+
+    .info-container {
+      min-width: 420px;
+      flex: 12 1 0;
+      margin-right: 50px;
+
+      h1 {
+        margin: 0;
+        @include container-spacing;
+        @include font-title;
+        color: $white;
+        word-break: break-word;
+      }
+
+      h2 {
+        @include font-small;
+        font-weight: 500;
+        color: $grey-light;
+      }
+
+      .labels-container {
+        @include font-medium;
+        color: $grey-light;
+
+        .divider {
+          margin: 0 8px 0 8px;
+        }
+
+        .rated {
+          background-color: $grey-light;
+          color: $grey-dark;
+          padding: 4px 6px 4px 6px;
+          border-radius: 4px;
+        }
+      }
+
+      .ratings-container {
+        @include container-spacing;
+        display: flex;
+
+        > *:not(:first-child) {
+          margin-left: 15px;
+        }
+
+        .logo-label {
+          display: flex;
+
+           > div {
+            display: inline-block;
+            padding: 8px;
+            border: 1px solid $grey-mid;
+            border-left: none;
+            border-radius: 0 4px 4px 0;
+            color: $white;
+
+            &.logo {
+              border: 1px solid;
+              border-radius: 4px 0 0 4px;
+
+              &.imdb{
+                background-color: $main-yellow;
+                border-color: $main-yellow;
+              }
+
+              &.rotten-tomatoes{
+                background-color: $main-red;
+                border-color: $main-red;
+              }
+            }
+          }
+        }
+
+        .favorite-button {
+          display: flex;
+          align-items: center;
+          @include font-small;
+          font-weight: 500;
+          border: 1px solid $grey-mid;
+          border-radius: 4px;
+          color: $grey-light;
+          padding: 8px 16px 8px 12px;
+          cursor: pointer;
+
+          &:hover {
+            color: $white;
+            border-color: $main-red;
+          }
+
+          &.favorite {
+            color: $white;
+            background-color: $main-red;
+            border-color: $main-red;
+          }
+
+          svg {
+            width: 18px;
+            height: 18px;
+            margin-right: 12px;
+          }
+        }
+      }
+
+      .plot-container {
+        @include container-spacing;
+        overflow: auto;
+        max-width: 90%;
+
+        .plot {
+          @include font-small;
+          color: $white;
+          text-align: justify;
+          line-height: 24px;
+        }
+      }
+
+      .extra-info-container {
+        @include container-spacing;
+        display: flex;
+        overflow: auto;
+        max-width: 90%;
+
+        .extra-info-subcontainer {
+          flex: 1 1 0;
+          margin-right: 20px;
+
+          .extra-info-item {
+            @include font-small;
+            color: $white;
+            margin-bottom: 10px;
+          }
+        }
+      }
+
+    }
+
+    .poster-container {
+      min-width: 250px;
+      flex: 5 1 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 10px;
+      }
+    }
+  }
+}

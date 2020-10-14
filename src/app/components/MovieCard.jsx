@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addFavorite, removeFavorite } from '../redux/actions';
 import { ReactComponent as HeartWhite } from '../../resources/icons/icon-heart-white.svg';
 import { ReactComponent as HeartFull } from '../../resources/icons/icon-heart-full.svg';
@@ -30,10 +31,10 @@ function MovieCard(props) {
       {isShown && (
         <>
           {!isFavorite && (<HeartWhite className="heart" onClick={() => updateFavorite(id)} />)}
-          <div className="movie-card-overlay">
+          <Link to={`/${id}`} className="movie-card-overlay">
             <div className="movie-title">{title}</div>
             <div className="movie-year">{year}</div>
-          </div>
+          </Link>
         </>
       )}
     </div>

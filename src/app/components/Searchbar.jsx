@@ -13,7 +13,7 @@ function Searchbar(props) {
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => {
       dispatchUpdateSearchTerm(searchText);
-    }, 600);
+    }, 400);
   };
 
   return (

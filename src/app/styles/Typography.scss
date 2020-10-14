@@ -1,19 +1,15 @@
 @mixin font-title {
-  font: 700 80px/88px 'Roboto', sans-serif;
-  letter-spacing: 0.8px;
+  font: 700 80px 'Roboto', sans-serif;
 }
 
 @mixin font-big {
-  font: 500 24px/30px 'Roboto', sans-serif;
-  letter-spacing: 0.2px;
+  font: 500 24px 'Roboto', sans-serif;
 }
 
 @mixin font-medium {
-  font: 500 20px/28px 'Roboto', sans-serif;
-  letter-spacing: 0.2px;
+  font: 500 20px 'Roboto', sans-serif;
 }
 
 @mixin font-small {
-  font: 400 16px/24px 'Roboto', sans-serif;
-  letter-spacing: 0.16px;
+  font: 400 16px 'Roboto', sans-serif;
 }
