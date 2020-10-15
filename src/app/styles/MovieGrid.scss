@@ -2,25 +2,6 @@
 @import './Colors.scss';
 
 .app {
-  .empty-state {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    
-    .empty-state-text {
-      @include font-big;
-      color: $white;
-    }
-
-    .empty-state-subtext {
-      @include font-small;
-      color: $grey-light;
-      margin-top: 10px;
-    }
-  }
-
   .movie-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr) );

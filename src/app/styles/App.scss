@@ -14,4 +14,31 @@ body {
   .page-logo {
     margin: 25px 0 25px 0;
   }
+
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  .invalid-state {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    
+    .invalid-state-text {
+      @include font-big;
+      color: $white;
+      word-break: break-word;
+    }
+
+    .invalid-state-subtext {
+      @include font-small;
+      color: $grey-light;
+      margin-top: 10px;
+    }
+  }
 }

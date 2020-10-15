@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+import InvalidState from './InvalidState';
 import { addFavorite, removeFavorite } from '../redux/actions';
 import { ReactComponent as ArrowWhite } from '../../resources/icons/icon-arrow-white.svg';
 import { ReactComponent as ArrowGrey } from '../../resources/icons/icon-arrow-grey.svg';
@@ -16,6 +18,7 @@ class MovieDetails extends Component {
     super(props);
     this.state = {
       movie: null,
+      isLoading: false,
       isArrowHovered: false,
       isFavoriteHovered: false,
       isFavorite: props.favorites.includes(props.match.params.id),
@@ -24,9 +27,10 @@ class MovieDetails extends Component {
 
   componentDidMount() {
     const { id } = this.props.match.params;
+    this.setState({ isLoading: true });
     fetch(`http://www.omdbapi.com/?i=${encodeURIComponent(id)}&apikey=906ae61f`)
       .then((response) => response.json())
-      .then((json) => this.setState({ movie: json }))
+      .then((json) => this.setState({ movie: json.Response === 'True' ? json : null, isLoading: false }))
       .catch((err) => console.log('Request Failed: ', err));
   }
 
@@ -42,8 +46,39 @@ class MovieDetails extends Component {
   render() {
     const {
       isArrowHovered, isFavoriteHovered, movie, isFavorite,
+      isLoading,
     } = this.state;
-    if (movie) return (
+
+    if (isLoading) {
+      return (
+        <Loader
+          type="TailSpin"
+          color="#FF9F1C"
+          className="loader"
+          height={100}
+          width={100}
+        />
+      );
+    }
+
+    if (!movie) {
+      const text = 'The movie with this id was not found.';
+      const subtext = 'Please try again';
+      return (
+        <>
+          <div className="arrow-container">
+            <Link to="/">
+              {isArrowHovered
+                ? <ArrowWhite onMouseLeave={() => this.setState({ isArrowHovered: false })} />
+                : <ArrowGrey onMouseEnter={() => this.setState({ isArrowHovered: true })} />}
+            </Link>
+          </div>
+          <InvalidState text={text} subtext={subtext} />
+        </>
+      );
+    }
+
+    return (
       <>
         <div className="arrow-container">
           <Link to="/">
@@ -106,7 +141,6 @@ class MovieDetails extends Component {
         </div>
       </>
     );
-    return (<div />);
   }
 }
 

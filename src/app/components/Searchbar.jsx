@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { ReactComponent as Magnifier } from '../../resources/icons/icon-magnifier-grey.svg';
 import { updateSearchTerm } from '../redux/actions';
+import { ReactComponent as Magnifier } from '../../resources/icons/icon-magnifier-grey.svg';
+import { ReactComponent as MagnifierDisabled } from '../../resources/icons/icon-magnifier-disabled.svg';
+
 import '../styles/Searchbar.scss';
 
 function Searchbar(props) {
+  const [isSearchDisabled, setIsSearchDisabled] = useState(false);
   let timeout = 0;
 
   const processSearch = (e) => {
@@ -17,9 +20,9 @@ function Searchbar(props) {
   };
 
   return (
-    <div className="search">
-      <Magnifier className="magnifier" />
-      <input type="search" placeholder="Search movies..." className="search-input-field" onChange={processSearch} />
+    <div className={`search${isSearchDisabled ? ' disabled' : ''}`}>
+      {!isSearchDisabled ? <Magnifier className="magnifier" /> : <MagnifierDisabled className="magnifier" />}
+      <input type="search" placeholder="Search movies..." className="search-input-field" onChange={processSearch} disabled={isSearchDisabled} />
     </div>
   );
 }

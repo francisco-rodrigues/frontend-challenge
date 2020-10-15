@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../styles/MovieCard.scss';
 import { addFavorite, removeFavorite } from '../redux/actions';
 import { ReactComponent as HeartWhite } from '../../resources/icons/icon-heart-white.svg';
-import { ReactComponent as HeartFull } from '../../resources/icons/icon-heart-full.svg';
+import { ReactComponent as HeartFull } from '../../resources/icons/icon-heart-full-border.svg';
 
 function MovieCard(props) {
   const {
@@ -12,7 +12,7 @@ function MovieCard(props) {
     dispatchAddFavorite, dispatchRemoveFavorite,
   } = props;
 
-  const [isShown, setIsShown] = useState(false);
+  const [isCardHovered, setIsCardHovered] = useState(false);
   const [isFavorite, setIsFavorite] = useState(favorites.includes(id));
 
   const updateFavorite = () => {
@@ -24,12 +24,12 @@ function MovieCard(props) {
   return (
     <div
       className="movie-card-wrapper"
-      onMouseEnter={() => setIsShown(true)}
-      onMouseLeave={() => setIsShown(false)}
+      onMouseEnter={() => setIsCardHovered(true)}
+      onMouseLeave={() => setIsCardHovered(false)}
     >
       <img src={poster} alt={title} />
       {isFavorite && (<HeartFull className="heart" onClick={() => updateFavorite(id)} />)}
-      {isShown && (
+      {isCardHovered && (
         <>
           {!isFavorite && (<HeartWhite className="heart" onClick={() => updateFavorite(id)} />)}
           <Link to={`/${id}`} className="movie-card-overlay">

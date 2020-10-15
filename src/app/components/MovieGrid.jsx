@@ -1,37 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import EmptyStateIllustration from '../../resources/illustrations/illustration-empty-state.png';
+import Loader from 'react-loader-spinner';
 import '../styles/MovieGrid.scss';
 import MovieCard from './MovieCard';
+import InvalidState from './InvalidState';
 
 class MovieGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
       movieList: null,
+      isLoading: false,
     };
   }
 
   componentDidUpdate(prevProps) {
     const { searchTerm } = this.props;
     if (prevProps.searchTerm !== searchTerm) {
+      this.setState({ isLoading: true });
       fetch(`http://www.omdbapi.com/?s=${encodeURIComponent(searchTerm)}&apikey=906ae61f`)
         .then((response) => response.json())
-        .then((json) => this.setState({ movieList: json.Response === 'True' ? json.Search : null }))
+        .then((json) => this.setState({ isLoading: false, movieList: json.Response === 'True' ? json.Search : null }))
         .catch((err) => console.log('Request Failed: ', err));
     }
   }
 
   render() {
-    const { movieList } = this.state;
+    const { movieList, isLoading } = this.state;
+    const { searchTerm } = this.props;
+
+    if (isLoading) {
+      return (
+        <Loader
+          type="TailSpin"
+          color="#FF9F1C"
+          className="loader"
+          height={100}
+          width={100}
+        />
+      );
+    }
 
     if (!movieList) {
+      let text = 'Don\'t know what to search?';
+      let subtext = 'Here\'s an offer you can\'t refuse';
+      if (searchTerm) {
+        text = `Sorry, no content matching "${searchTerm}" was found`;
+        subtext = 'Please try with another search term';
+      }
+
       return (
-        <div className="empty-state">
-          <img src={EmptyStateIllustration} alt="Logo" />
-          <div className="empty-state-text">Don't know what to search?</div>
-          <div className="empty-state-subtext">Here's an offer you can't refuse</div>
-        </div>
+        <InvalidState text={text} subtext={subtext} />
       );
     }
 
