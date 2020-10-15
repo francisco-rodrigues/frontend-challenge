@@ -14,6 +14,8 @@ function Searchbar(props) {
     const { dispatchUpdateSearchTerm } = props;
     const searchText = e.target.value;
     if (timeout) clearTimeout(timeout);
+    /* a delay is given before updating the search input which is reset if the user
+      types another character, this avoids firing a new request everytime the user presses a key */
     timeout = setTimeout(() => {
       dispatchUpdateSearchTerm(searchText);
     }, 400);

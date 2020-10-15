@@ -15,6 +15,7 @@ function MovieCard(props) {
   const [isCardHovered, setIsCardHovered] = useState(false);
   const [isFavorite, setIsFavorite] = useState(favorites.includes(id));
 
+  /* Adds or removes the movie id from the favorites stored in redux state */
   const updateFavorite = () => {
     if (isFavorite) dispatchRemoveFavorite(id);
     else dispatchAddFavorite(id);
@@ -28,10 +29,10 @@ function MovieCard(props) {
       onMouseLeave={() => setIsCardHovered(false)}
     >
       <img src={poster} alt={title} />
-      {isFavorite && (<HeartFull className="heart" onClick={() => updateFavorite(id)} />)}
+      {isFavorite && (<HeartFull className="heart" onClick={() => updateFavorite()} />)}
       {isCardHovered && (
         <>
-          {!isFavorite && (<HeartWhite className="heart" onClick={() => updateFavorite(id)} />)}
+          {!isFavorite && (<HeartWhite className="heart" onClick={() => updateFavorite()} />)}
           <Link to={`/${id}`} className="movie-card-overlay">
             <div className="movie-title">{title}</div>
             <div className="movie-year">{year}</div>

@@ -29,6 +29,7 @@ class MovieGrid extends Component {
     const { movieList, isLoading } = this.state;
     const { searchTerm } = this.props;
 
+    /* Renders a spinner when waiting for the request response */
     if (isLoading) {
       return (
         <Loader
@@ -41,6 +42,8 @@ class MovieGrid extends Component {
       );
     }
 
+    /* When there is not a valid list of movies, an empty state is renderd if the user
+      didn't type anything, or a not found state if the request didn't return a list */
     if (!movieList) {
       let text = 'Don\'t know what to search?';
       let subtext = 'Here\'s an offer you can\'t refuse';

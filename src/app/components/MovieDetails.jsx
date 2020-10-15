@@ -35,6 +35,7 @@ class MovieDetails extends Component {
       .catch((err) => console.log('Request Failed: ', err));
   }
 
+  /* Adds or removes the movie id from the favorites stored in redux state */
   updateFavorite = () => {
     const { isFavorite } = this.state;
     const { dispatchAddFavorite, dispatchRemoveFavorite, match } = this.props;
@@ -50,6 +51,7 @@ class MovieDetails extends Component {
       isLoading,
     } = this.state;
 
+    /* Renders a spinner when waiting for the request response */
     if (isLoading) {
       return (
         <Loader
@@ -62,6 +64,7 @@ class MovieDetails extends Component {
       );
     }
 
+    /* Returns an invalid state if a movie is not found with the given id */
     if (!movie) {
       const text = 'The movie with this id was not found.';
       const subtext = 'Please try again';
