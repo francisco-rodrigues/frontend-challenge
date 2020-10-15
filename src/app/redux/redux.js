@@ -1,4 +1,6 @@
 import { createStore } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const initialState = {
   searchTerm: '',
@@ -27,6 +29,14 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-const store = createStore(reducer);
+const persistConfig = {
+  key: 'favorites',
+  storage,
+  whitelist: ['favorites'],
+};
+const persistedReducer = persistReducer(persistConfig, reducer);
 
-export default store;
+const store = createStore(persistedReducer);
+const persistor = persistStore(store);
+
+export { persistor, store };
