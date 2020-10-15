@@ -26,7 +26,8 @@ class MovieDetails extends Component {
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
+    const { match } = this.props;
+    const { id } = match.params;
     this.setState({ isLoading: true });
     fetch(`http://www.omdbapi.com/?i=${encodeURIComponent(id)}&apikey=906ae61f`)
       .then((response) => response.json())
@@ -100,11 +101,11 @@ class MovieDetails extends Component {
             <div className="ratings-container">
               <div className="logo-label">
                 <div className="imdb logo"><LogoIMDB /></div>
-                <div>{movie.Ratings.find((elem) => elem.Source === 'Internet Movie Database').Value}</div>
+                <div>{movie.Ratings.find((rating) => rating.Source === 'Internet Movie Database').Value}</div>
               </div>
               <div className="logo-label">
                 <div className="rotten-tomatoes logo"><LogoRottenTomatoes /></div>
-                <div>{movie.Ratings.find((elem) => elem.Source === 'Rotten Tomatoes').Value}</div>
+                <div>{movie.Ratings.find((rating) => rating.Source === 'Rotten Tomatoes').Value}</div>
               </div>
               <div
                 className={`favorite-button${isFavorite ? ' favorite' : ''}`}
@@ -112,7 +113,8 @@ class MovieDetails extends Component {
                 onMouseEnter={() => this.setState({ isFavoriteHovered: true })}
                 onMouseLeave={() => this.setState({ isFavoriteHovered: false })}
               >
-                {isFavorite ? <HeartFull /> : (<>{isFavoriteHovered ? <HeartWhite /> : <HeartGrey />}</>)}
+                {isFavorite ? <HeartFull />
+                  : (<>{isFavoriteHovered ? <HeartWhite /> : <HeartGrey />}</>)}
                 <span>{isFavorite ? 'Added' : 'Add to favorites'}</span>
               </div>
             </div>
