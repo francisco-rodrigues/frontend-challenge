@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import '../styles/MovieGrid.scss';
@@ -74,6 +75,10 @@ class MovieGrid extends Component {
     );
   }
 }
+
+MovieGrid.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   searchTerm: state.searchTerm,

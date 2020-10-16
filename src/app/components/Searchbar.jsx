@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateSearchTerm } from '../redux/actions';
 import { ReactComponent as Magnifier } from '../../resources/icons/icon-magnifier-grey.svg';
@@ -28,6 +29,10 @@ function Searchbar(props) {
     </div>
   );
 }
+
+Searchbar.propTypes = {
+  dispatchUpdateSearchTerm: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   searchTerm: state.searchTerm,

@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import EmptyStateIllustration from '../../resources/illustrations/illustration-empty-state.png';
 
-function InvalidState(props) {
-  const { text, subtext } = props;
+function InvalidState({ text, subtext }) {
   return (
     <div className="invalid-state">
       <img src={EmptyStateIllustration} alt="Logo" />
@@ -11,5 +11,10 @@ function InvalidState(props) {
     </div>
   );
 }
+
+InvalidState.propTypes = {
+  text: PropTypes.string.isRequired,
+  subtext: PropTypes.string.isRequired,
+};
 
 export default InvalidState;

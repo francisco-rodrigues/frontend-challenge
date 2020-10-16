@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
@@ -148,6 +149,17 @@ class MovieDetails extends Component {
     );
   }
 }
+
+MovieDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.string).isRequired,
+  dispatchAddFavorite: PropTypes.func.isRequired,
+  dispatchRemoveFavorite: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   favorites: state.favorites,

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../styles/MovieCard.scss';
@@ -29,10 +30,10 @@ function MovieCard(props) {
       onMouseLeave={() => setIsCardHovered(false)}
     >
       <img src={poster} alt={title} />
-      {isFavorite && (<HeartFull className="heart" onClick={() => updateFavorite()} />)}
+      {isFavorite && (<HeartFull className="heart" onClick={updateFavorite} />)}
       {isCardHovered && (
         <>
-          {!isFavorite && (<HeartWhite className="heart" onClick={() => updateFavorite()} />)}
+          {!isFavorite && (<HeartWhite className="heart" onClick={updateFavorite} />)}
           <Link to={`/${id}`} className="movie-card-overlay">
             <div className="movie-title">{title}</div>
             <div className="movie-year">{year}</div>
@@ -42,6 +43,16 @@ function MovieCard(props) {
     </div>
   );
 }
+
+MovieCard.propTypes = {
+  poster: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.string).isRequired,
+  dispatchAddFavorite: PropTypes.func.isRequired,
+  dispatchRemoveFavorite: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   favorites: state.favorites,
