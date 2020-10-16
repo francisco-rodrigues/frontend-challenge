@@ -32,7 +32,7 @@ class MovieDetails extends Component {
     fetch(`http://www.omdbapi.com/?i=${encodeURIComponent(id)}&apikey=906ae61f`)
       .then((response) => response.json())
       .then((json) => this.setState({ movie: json.Response === 'True' ? json : null, isLoading: false }))
-      .catch((err) => console.log('Request Failed: ', err));
+      .catch(() => this.setState({ movie: null, isLoading: false }));
   }
 
   /* Adds or removes the movie id from the favorites stored in redux state */

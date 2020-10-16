@@ -21,7 +21,7 @@ class MovieGrid extends Component {
       fetch(`http://www.omdbapi.com/?s=${encodeURIComponent(searchTerm)}&apikey=906ae61f`)
         .then((response) => response.json())
         .then((json) => this.setState({ isLoading: false, movieList: json.Response === 'True' ? json.Search : null }))
-        .catch((err) => console.log('Request Failed: ', err));
+        .catch(() => this.setState({ isLoading: false, movieList: null }));
     }
   }
 
